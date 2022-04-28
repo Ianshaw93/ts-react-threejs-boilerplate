@@ -7,9 +7,9 @@ const Header: React.FC = () => {
 
   return (
     <StyledHeader
-      className="header"
+      className="header" 
     >
-      <h1 className="title">hello</h1>
+      <h1 className="title">Crypto Grid</h1>
     </StyledHeader>
   );
 };
