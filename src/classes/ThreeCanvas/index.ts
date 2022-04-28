@@ -2,8 +2,8 @@
 import THREE from './three' // orbit controls wasn't working until require in three.js
 import { Mesh, Vector3, MathUtils } from 'three';
 import gsap from 'gsap';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';// (ii)
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';// (ii)
+// import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js'
 // import { FirstPersonControls } from './FirstPersonControls';
 
 import theme from 'utils/theme';
@@ -55,8 +55,8 @@ class ThreeCanvas {
     const renderPass = new RenderPass( scene, camera );
     renderPass.clear = false;
     composer.addPass( renderPass );
-    // const controls = this.controls = new OrbitControls(camera, renderer.domElement); //project works with orbit controls
-    const controls = this.controls = new FirstPersonControls(camera, renderer.domElement); // does not work with first person controls?? not sure why
+    const controls = this.controls = new OrbitControls(camera, renderer.domElement); //project works with orbit controls
+    // const controls = this.controls = new FirstPersonControls(camera, renderer.domElement); // does not work with first person controls?? not sure why
     // const controls = this.controls = new THREE.FlyControls(camera, renderer.domElement); //FlyControls
 
  
