@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';// (ii)
 // import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js'
 // import { FirstPersonControls } from './FirstPersonControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 import theme from 'utils/theme';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
@@ -91,6 +92,18 @@ class ThreeCanvas {
     testBoxMesh.position.set(0,0,10);
     scene.add(testBoxMesh);
 
+    const objLoader = new GLTFLoader();
+
+    // const tableObject = await Promise()
+    objLoader.load( './oldtablethreed.glb', function ( gltf ) {
+        const model = gltf.scene.children[0];
+        model.scale.set(0.5,0.5,0.5);
+        scene.add( gltf.scene );
+    },
+    undefined, function ( error ) {
+        console.error( error );
+    } );
+
     {
       var light = new THREE.PointLight( 0xffffff, 0.9 );
       // camera.add( light );
@@ -119,13 +132,14 @@ class ThreeCanvas {
   public setAnimationLoop(callback: Function) {
     this.renderer.setAnimationLoop(callback);
   }
-
+  
   render() {
     // check if we need to resize the canvas and re-setup the camera
     if (this.resizeRendererToDisplaySize(this.renderer)) {
       const canvas = this.renderer.domElement;
       this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
       this.camera.updateProjectionMatrix();
+      // this.controls.handleResize();
     }
     // this.scene.update()
     // this.controls.update()
@@ -134,6 +148,7 @@ class ThreeCanvas {
     // this.scene.update()
     this.controls.update();
   }
+
   // this.render();
 }
 
